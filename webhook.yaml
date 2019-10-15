@@ -1,0 +1,6 @@
+---
+github:
+  token: $GITHUB_TOKEN
+  repository:
+    owner: "ak1ra24"
+    name: "samplerepo"
