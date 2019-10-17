@@ -39,7 +39,16 @@ func (g *Github) GetIssues() ([]*github.Issue, error) {
 		return nil, err
 	}
 
-	return events, nil
+	var issues []*github.Issue
+
+	for _, event := range events {
+		prlink := event.GetPullRequestLinks()
+		if prlink == nil {
+			issues = append(issues, event)
+		}
+	}
+
+	return issues, nil
 }
 
 func (g *Github) DuplicateIssueTitle(compTitle string) (int, bool, error) {
